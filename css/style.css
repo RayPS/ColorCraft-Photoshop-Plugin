@@ -25,3 +25,9 @@ section{
     height: 100%;
     width: 100%;
 }
+
+#colorpicker{
+    display: block;
+    width: 200px;
+    height: 200px;
+}

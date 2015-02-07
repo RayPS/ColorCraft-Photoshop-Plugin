@@ -50,8 +50,6 @@ body, .onepage-wrapper, html {
   margin: 10px 10px;
 }
 .onepage-pagination li a{
-  /*width: 10px;*/
-  /*height: 10px;*/
   display: block;
   text-align: center;
   float: left;
@@ -68,10 +66,12 @@ body, .onepage-wrapper, html {
 }
 
 .onepage-pagination li a.active:before{
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border: 2px solid black;
   background-color: white;
+  margin-left: -1px;
+  margin-top: -1px;
 }
 
 .disabled-onepage-scroll, .disabled-onepage-scroll .wrapper {

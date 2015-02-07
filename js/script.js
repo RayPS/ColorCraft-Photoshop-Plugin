@@ -17,6 +17,9 @@ var myExtensionId = "colorshading"
 function init() {
 	themeManager.init();
 	Persistent(false)
+
+	spectrum(false)
+
 }
 init();
 
@@ -31,7 +34,21 @@ function Persistent(inOn) {
     csInterface.dispatchEvent(event);
 }
 
+function spectrum(isBackground) {
+	var script
+	if (isBackground) {
+		script = "app.backgroundColor.rgb.hexValue"
+	} else{
+		script = "app.foregroundColor.rgb.hexValue"
+	}
 
+	csInterface.evalScript(script ,function(callback){
+		$("#colorpicker").spectrum({
+		    color: callback,
+		    flat: true
+		})
+	})
+}
 
 $("main").on('mousewheel', function(event){
     return false;
@@ -41,3 +58,6 @@ $("main").on('mousewheel', function(event){
 	direction: "horizontal"
 })
 
+$("#colorpicker").on('dragstop.spectrum', function(e, color) {
+	csInterface.evalScript("app.foregroundColor.rgb.hexValue = '" + color.toHex() + "'")
+})
