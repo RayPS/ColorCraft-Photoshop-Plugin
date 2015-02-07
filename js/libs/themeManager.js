@@ -53,19 +53,19 @@ var themeManager = (function() {
 		if (redShade > 200) { // exact: 214 (#D6D6D6)
 			themeShade = "lightlight"; // might be useful in the future
 			// this is where font color and other theme dependent stuff could go
-			$("#theme_stylesheet").attr("href", "css/ps-cs6-light.css");
+			$("#theme_stylesheet").attr("href", "css/libs/ps-cs6-light.css");
 		
 		} else if (redShade > 180) { // exact: 184 (#B8B8B8)
 			themeShade = "light";
-			$("#theme_stylesheet").attr("href", "css/ps-cs6-medium-light.css");
+			$("#theme_stylesheet").attr("href", "css/libs/ps-cs6-medium-light.css");
 
 		} else if (redShade > 80) { // exact: 83 (#535353)
 			themeShade = "dark";
-			$("#theme_stylesheet").attr("href", "css/ps-cs6-medium-dark.css");
+			$("#theme_stylesheet").attr("href", "css/libs/ps-cs6-medium-dark.css");
 		
 		} else if (redShade > 50) { // exact: 52 (#343434)
 			themeShade = "darkdark";
-			$("#theme_stylesheet").attr("href", "css/ps-cs6-dark.css");
+			$("#theme_stylesheet").attr("href", "css/libs/ps-cs6-dark.css");
 		}
 
 		// Override Topcoat CSS with Font settings (family, size and color)

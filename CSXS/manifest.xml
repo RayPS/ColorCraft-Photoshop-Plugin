@@ -46,10 +46,15 @@
                         
 					</Geometry>
 					<Icons>
-                        <Icon Type="Normal">./img/light.png</Icon>
+                        <Icon Type="Normal">./img/placeholder.png</Icon>
+                        <Icon Type="RollOver">./img/placeholder.png</Icon>
+                        <Icon Type="DarkNormal">./img/placeholder.png</Icon>
+                        <Icon Type="DarkRollOver">./img/placeholder.png</Icon>
+
+                        <!-- <Icon Type="Normal">./img/light.png</Icon>
 						<Icon Type="RollOver">./img/light.png</Icon>
                         <Icon Type="DarkNormal">./img/dark.png</Icon>
-                        <Icon Type="DarkRollOver">./img/dark.png</Icon>
+                        <Icon Type="DarkRollOver">./img/dark.png</Icon> -->
 					</Icons>					
 				</UI>
 			</DispatchInfo>
