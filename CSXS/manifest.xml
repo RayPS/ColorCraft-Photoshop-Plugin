@@ -32,16 +32,16 @@
 					<Menu>ColorShading</Menu>
 					<Geometry>
 						<Size>
-							<Height>500</Height>
-							<Width>240</Width>
+							<Height>200</Height>
+							<Width>200</Width>
 						</Size>
                     <MinSize>
-                            <Height>500</Height>
-                            <Width>240</Width>
+                            <Height>200</Height>
+                            <Width>200</Width>
                         </MinSize>
                         <MaxSize>
-                            <Height>500</Height>
-                            <Width>240</Width>
+                            <Height>600</Height>
+                            <Width>400</Width>
                         </MaxSize>
                         
 					</Geometry>

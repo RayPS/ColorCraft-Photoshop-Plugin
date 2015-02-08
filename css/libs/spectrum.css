@@ -290,6 +290,7 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
     padding: 0;
     width: 180px;
     height: 150px;
+    left: calc(50% - 90px);
 }
 .sp-container, .sp-container button, .sp-container input, .sp-color, .sp-hue, .sp-clear {
     font: normal 12px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;

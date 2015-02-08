@@ -5,9 +5,9 @@
            
             <!-- Comment Host tags according to the apps you want your panel to support -->
             
-            Photoshop
+            <!-- Photoshop -->
             
-            <Host Name="PHXS" Port="8088"/>
+            <Host Name="PHXS" Port="8089"/>
             
             <!-- Illustrator -->
             <!-- <Host Name="ILST" Port="8089"/> -->
