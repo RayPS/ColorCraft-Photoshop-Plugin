@@ -54,10 +54,16 @@ $("main").on('mousewheel', function(event){
     return false;
 }).onepage_scroll({
 	animationTime: 500,
-	keyboard: false,
 	direction: "horizontal"
 })
 
-$("#colorpicker").on('dragstop.spectrum', function(e, color) {
-	csInterface.evalScript("app.foregroundColor.rgb.hexValue = '" + color.toHex() + "'")
-})
+
+$("body").mouseup(function(event) {
+	var color = $("#colorpicker").spectrum("get").toHex()
+	if (event.altKey) {
+		csInterface.evalScript("app.backgroundColor.rgb.hexValue = '" + color + "'")
+	} else {
+		csInterface.evalScript("app.foregroundColor.rgb.hexValue = '" + color + "'")
+	}
+});
+
