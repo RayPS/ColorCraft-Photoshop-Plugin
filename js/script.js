@@ -15,78 +15,16 @@ var csInterface = new CSInterface();
 var myExtensionId = "colorshading"
 
 function init() {
+
 	themeManager.init();
 	Persistent(true)
 
 	spectrum(false)
+
+	document.oncontextmenu = function() {return false;};
 }
 init();
 
-function Persistent(inOn) {
-
-    if (inOn){
-        var event = new CSEvent("com.adobe.PhotoshopPersistent", "APPLICATION");
-    } else {
-        var event = new CSEvent("com.adobe.PhotoshopUnPersistent", "APPLICATION");
-    }
-    event.extensionId = myExtensionId;
-    csInterface.dispatchEvent(event);
-}
-
-function spectrum(isBackground) {
-	var script
-	if (isBackground) {
-		script = "app.backgroundColor.rgb.hexValue"
-	} else{
-		script = "app.foregroundColor.rgb.hexValue"
-	}
-
-	csInterface.evalScript(script ,function(callback){
-		$("#spectrum").spectrum({
-		    color: callback,
-		    flat: true,
-		    clickoutFiresChange: true,
-		    showButtons: false
-		})
-
-		generate(callback)
-	})
-}
-
-function hexColor(){
-	return $("#spectrum").spectrum("get").toHex()
-}
-
-$("main").on('mousewheel', function(event){
-    return false;
-
-}).onepage_scroll({
-	animationTime: 250,
-	direction: "horizontal"
-})
-
-$("#colorpicker").on('mouseup mouseleave', function(event) {
-
-	if (event.altKey) {
-		csInterface.evalScript("app.backgroundColor.rgb.hexValue = '" + hexColor() + "'")
-	} else {
-		csInterface.evalScript("app.foregroundColor.rgb.hexValue = '" + hexColor() + "'")
-	}	
-}).on("move.spectrum", function(event){
-	generate(hexColor())
-})
-
-
-function generate (c) {
-
-	for (var i = 0; i < 7; i++) {
-		$(".T li")[i].style.backgroundColor = palette.t(c)[i]
-		$(".B li")[i].style.backgroundColor = palette.b(c)[i]
-		$(".L li")[i].style.backgroundColor = palette.l(c)[i]
-		$(".S li")[i].style.backgroundColor = palette.s(c)[i]
-		$(".H li")[i].style.backgroundColor = palette.h(c)[i]
-	}
-}
 
 var palette = {
 	t: function(baseColor){
@@ -150,8 +88,93 @@ var palette = {
 }
 
 
+function Persistent(inOn) {
+
+    if (inOn){
+        var event = new CSEvent("com.adobe.PhotoshopPersistent", "APPLICATION");
+    } else {
+        var event = new CSEvent("com.adobe.PhotoshopUnPersistent", "APPLICATION");
+    }
+    event.extensionId = myExtensionId;
+    csInterface.dispatchEvent(event);
+}
+
+function spectrum(isBackground) {
+	var script
+	if (isBackground) {
+		script = "app.backgroundColor.rgb.hexValue"
+	} else{
+		script = "app.foregroundColor.rgb.hexValue"
+	}
+
+	csInterface.evalScript(script ,function(callback){
+		$("#spectrum").spectrum({
+		    color: callback,
+		    flat: true,
+		    clickoutFiresChange: true,
+		    showButtons: false
+		})
+
+		generate(callback)
+	})
+}
 
 
+function setPSColor(color, isBackground) {
+	var script
+	if (isBackground) {
+		script = "app.backgroundColor.rgb.hexValue = '" + color + "'"
+	} else{
+		script = "app.foregroundColor.rgb.hexValue = '" + color + "'"
+	}
+	csInterface.evalScript(script)
+}
+
+function hexColor(){
+	return $("#spectrum").spectrum("get").toHex()
+}
+
+function generate (c) {
+
+	for (var i = 0; i < 7; i++) {
+		$(".T li")[i].style.backgroundColor = palette.t(c)[i]
+		$(".B li")[i].style.backgroundColor = palette.b(c)[i]
+		$(".L li")[i].style.backgroundColor = palette.l(c)[i]
+		$(".S li")[i].style.backgroundColor = palette.s(c)[i]
+		$(".H li")[i].style.backgroundColor = palette.h(c)[i]
+	}
+}
+
+
+$("main").on('mousewheel', function(event){
+    return false;
+}).onepage_scroll({
+	animationTime: 250,
+	direction: "horizontal"
+})
+
+$("#colorpicker").on('mouseup mouseleave', function(event) {
+	setPSColor(hexColor(), event.altKey)
+}).on("move.spectrum", function(event){
+	generate(hexColor())
+})
+
+
+$("#shading li").click(function(event) {
+	$('.selected').removeClass('selected')
+	$(this).addClass('selected')
+
+	var bg = tinycolor($(this).css('background-color')).toHex()
+	setPSColor(bg)
+
+}).dblclick(function(event) {
+	spectrum(false)
+}).mousedown(function(event) {
+	$(this).trigger('click')
+	if (event.button == 2) {
+		spectrum(false)
+	}
+});
 
 
 
