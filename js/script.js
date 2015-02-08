@@ -46,7 +46,8 @@ function spectrum(isBackground) {
 		$("#spectrum").spectrum({
 		    color: callback,
 		    flat: true,
-		    clickoutFiresChange: true
+		    clickoutFiresChange: true,
+		    showButtons: false
 		})
 	})
 }

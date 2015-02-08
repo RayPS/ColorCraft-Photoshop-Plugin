@@ -28,8 +28,9 @@ section{
 
 #colorpicker{
     display: block;
-    width: 240px;
-    height: 180px;
-    background-color: red;
+    width: 200px;
+    height: 170px;
+    background-color: green;
+    padding: 10px;
     /*overflow: hidden;*/
 }

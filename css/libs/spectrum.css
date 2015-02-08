@@ -14,7 +14,7 @@ License: MIT
     *zoom: 1;
     /* https://github.com/bgrins/spectrum/issues/40 */
     z-index: 9999994;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 .sp-container.sp-flat {
     position: relative;
@@ -31,7 +31,8 @@ License: MIT
 /* http://ansciath.tumblr.com/post/7347495869/css-aspect-ratio */
 .sp-top {
   position:relative;
-  width: 100%;
+  width: 180px;
+  height: 150px;
   display:inline-block;
 }
 .sp-top-inner {
@@ -47,14 +48,17 @@ License: MIT
     left:0;
     bottom:0;
     right:20%;
+    width: 150px;
+    height: 150px;
 }
 .sp-hue {
     position: absolute;
     top:0;
     right:0;
     bottom:0;
-    left:84%;
-    height: 100%;
+    left: 160px;
+    height: 150px;
+    width: 20px;
 }
 
 .sp-clear-enabled .sp-hue {
@@ -247,6 +251,32 @@ License: MIT
     opacity: .8;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 Theme authors:
 Here are the basic themeable display options (colors, fonts, global widths).
@@ -255,9 +285,11 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 
 .sp-container {
     border-radius: 0;
-    background-color: #ECECEC;
-    border: solid 1px #f0c49B;
+    /*background-color: #ECECEC;*/
+    /*border: solid 1px #f0c49B;*/
     padding: 0;
+    width: 180px;
+    height: 150px;
 }
 .sp-container, .sp-container button, .sp-container input, .sp-color, .sp-hue, .sp-clear {
     font: normal 12px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
@@ -267,10 +299,15 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
     box-sizing: border-box;
 }
 .sp-top {
-    margin-bottom: 3px;
+    /*margin-bottom: 3px;*/
 }
 .sp-color, .sp-hue, .sp-clear {
-    border: solid 1px #666;
+    /*border: solid 1px rgba(0,0,0,0.5);*/
+    /*box-shadow: inset 0 0 0 10px rgba(0,0,0,1);*/
+}
+
+.sp-sat, .sp-hue {
+    box-shadow: 0 0 0 1px HSL(0, 0%, 10%),0 0 0 2px rgba(255,255,255,0.1);
 }
 
 /* Input */
@@ -302,13 +339,13 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 .sp-picker-container , .sp-palette-container {
     float:left;
     position: relative;
-    padding: 10px;
-    padding-bottom: 300px;
-    margin-bottom: -290px;
+    /*padding-bottom: 300px;*/
+    /*margin-bottom: -290px;*/
 }
 .sp-picker-container {
-    width: 172px;
-    border-left: solid 1px #fff;
+    width: 180px;
+    height: 150px;
+    /*border-left: solid 1px #fff;*/
 }
 
 /* Palettes */
