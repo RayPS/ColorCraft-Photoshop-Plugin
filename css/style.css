@@ -28,6 +28,8 @@ section{
 
 #colorpicker{
     display: block;
-    width: 200px;
-    height: 200px;
+    width: 240px;
+    height: 180px;
+    background-color: red;
+    /*overflow: hidden;*/
 }

@@ -43,9 +43,10 @@ function spectrum(isBackground) {
 	}
 
 	csInterface.evalScript(script ,function(callback){
-		$("#colorpicker").spectrum({
+		$("#spectrum").spectrum({
 		    color: callback,
-		    flat: true
+		    flat: true,
+		    clickoutFiresChange: true
 		})
 	})
 }
@@ -58,12 +59,11 @@ $("main").on('mousewheel', function(event){
 })
 
 
-$("body").mouseup(function(event) {
-	var color = $("#colorpicker").spectrum("get").toHex()
+$("#colorpicker").mouseup(function(event) {
+	var color = $("#spectrum").spectrum("get").toHex()
 	if (event.altKey) {
 		csInterface.evalScript("app.backgroundColor.rgb.hexValue = '" + color + "'")
 	} else {
 		csInterface.evalScript("app.foregroundColor.rgb.hexValue = '" + color + "'")
 	}
-});
-
+})
