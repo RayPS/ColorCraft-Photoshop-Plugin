@@ -1,2 +1,1 @@
-# Color-Shading-Photoshop-Plugin
-Color Shading Photoshop Plugin
+# WORKING IN PROGRESS
