@@ -19,7 +19,6 @@ function init() {
 	Persistent(true)
 
 	spectrum(false)
-
 }
 init();
 
@@ -49,25 +48,32 @@ function spectrum(isBackground) {
 		    clickoutFiresChange: true,
 		    showButtons: false
 		})
+
+		generate(callback)
 	})
+}
+
+function hexColor(){
+	return $("#spectrum").spectrum("get").toHex()
 }
 
 $("main").on('mousewheel', function(event){
     return false;
+
 }).onepage_scroll({
 	animationTime: 250,
 	direction: "horizontal"
 })
 
 $("#colorpicker").on('mouseup mouseleave', function(event) {
-	var color = $("#spectrum").spectrum("get").toHex()
-	generate(color)
 
 	if (event.altKey) {
-		csInterface.evalScript("app.backgroundColor.rgb.hexValue = '" + color + "'")
+		csInterface.evalScript("app.backgroundColor.rgb.hexValue = '" + hexColor() + "'")
 	} else {
-		csInterface.evalScript("app.foregroundColor.rgb.hexValue = '" + color + "'")
+		csInterface.evalScript("app.foregroundColor.rgb.hexValue = '" + hexColor() + "'")
 	}	
+}).on("move.spectrum", function(event){
+	generate(hexColor())
 })
 
 
@@ -75,40 +81,71 @@ function generate (c) {
 
 	for (var i = 0; i < 7; i++) {
 		$(".T li")[i].style.backgroundColor = palette.t(c)[i]
+		$(".B li")[i].style.backgroundColor = palette.b(c)[i]
+		$(".L li")[i].style.backgroundColor = palette.l(c)[i]
+		$(".S li")[i].style.backgroundColor = palette.s(c)[i]
 		$(".H li")[i].style.backgroundColor = palette.h(c)[i]
 	}
 }
 
 var palette = {
 	t: function(baseColor){
-		var palette = new Array()
-		var gap = 20
+		var C = new Array()
 
 		for (var i = 0; i < 7; i++) {
 		    if (i < 4) {
-		        palette[i] = tinycolor.mix(baseColor, tinycolor("Blue") , ~(i - 4) * 0.15)
-		                .darken(~(i - 4) * 0.15)
-		                .saturate(~(i - 4) * 0.3)
-		                .toHexString()
+		        C[i] = tinycolor.mix(baseColor, tinycolor("Blue") , ~(i - 4) * 20)
+		        				.darken(~(i - 4) * 5)
+		        				.desaturate(~(i - 4) * 3)
+		                		.toHexString()
 		    } else{
-		        palette[i] = tinycolor.mix(baseColor, tinycolor("Gold") , i * 0.06)
-		                .lighten(i * 0.075)
-		                .saturate(i * 0.01)
-		                .toHexString()
+		        C[i] = tinycolor.mix(baseColor, tinycolor("Yellow") , i * 6)
+		        				.brighten(i * 3)
+		            		    .toHexString()
 		    }
 		}
 
-		return palette;
+		return C;
 	},
-	
-	h: function(baseColor){
-		var palette = new Array()
-		var gap = 20
+
+	b: function(baseColor){
+		var C = new Array()
+		var gap = 10
 
 		for (var i = 0; i < 7; i++) {
-			palette[i] = tinycolor(baseColor).spin((i - 3) * gap)
+			C[i] = tinycolor(baseColor).brighten((i - 3) * gap)
 		}
-		return palette  
+		return C 
+	},
+
+	l: function(baseColor){
+		var C = new Array()
+		var gap = 10
+
+		for (var i = 0; i < 7; i++) {
+			C[i] = tinycolor(baseColor).lighten((i - 3) * gap)
+		}
+		return C 
+	},
+
+	s: function(baseColor){
+		var C = new Array()
+		var gap = 10
+
+		for (var i = 0; i < 7; i++) {
+			C[i] = tinycolor(baseColor).saturate((i - 3) * gap)
+		}
+		return C 
+	},
+
+	h: function(baseColor){
+		var C = new Array()
+		var gap = 10
+
+		for (var i = 0; i < 7; i++) {
+			C[i] = tinycolor(baseColor).spin((i - 3) * gap)
+		}
+		return C  
 	}
 }
 

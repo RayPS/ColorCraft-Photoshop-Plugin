@@ -32,7 +32,7 @@
 					<Menu>ColorShading</Menu>
 					<Geometry>
 						<Size>
-							<Height>200</Height>
+							<Height>500</Height>
 							<Width>200</Width>
 						</Size>
                     <MinSize>
@@ -40,7 +40,7 @@
                             <Width>200</Width>
                         </MinSize>
                         <MaxSize>
-                            <Height>600</Height>
+                            <Height>500</Height>
                             <Width>400</Width>
                         </MaxSize>
                         
