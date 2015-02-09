@@ -20,18 +20,9 @@ var MouseIsDown;
 function init() {
 
 	themeManager.init();
-	Persistent(true)
-
-	getAppColor(false, function(callback){
-		$("#spectrum").spectrum({
-		    color: callback,
-		    flat: true,
-		    clickoutFiresChange: true,
-		    showButtons: false
-		})
-
-		pick(callback,true)
-	})
+	persistent(true)
+	register(true)
+	spectrumInit()
 
 	document.oncontextmenu = function() {return false;};
 }
@@ -100,7 +91,7 @@ var palette = {
 }
 
 
-function Persistent(inOn) {
+function persistent(inOn) {
 
     if (inOn){
         var event = new CSEvent("com.adobe.PhotoshopPersistent", "APPLICATION");
@@ -109,6 +100,36 @@ function Persistent(inOn) {
     }
     event.extensionId = myExtensionId;
     csInterface.dispatchEvent(event);
+}
+
+function register(inOn){
+
+	if (inOn) {
+        var event = new CSEvent("com.adobe.PhotoshopRegisterEvent", "APPLICATION");
+    } else {
+        var event = new CSEvent("com.adobe.PhotoshopUnRegisterEvent", "APPLICATION");
+    }
+
+	event.extensionId = myExtensionId
+	event.data = "1936028772"
+	// 1936028772 = charIDToTypeID( "setd" ) = set
+	// 1181902659 = charIDToTypeID( "FrgC" ) = foregroundColor
+	// 1113811779 = charIDToTypeID( "BckC" ) = backgroundColor
+	csInterface.dispatchEvent(event)
+	csInterface.addEventListener("PhotoshopCallback", PSCallback)
+}
+
+function spectrumInit(){
+	getAppColor(false, function(callback){
+		$("#spectrum").spectrum({
+		    color: callback,
+		    flat: true,
+		    clickoutFiresChange: true,
+		    showButtons: false
+		})
+
+		pick(callback,true)
+	})
 }
 
 function getAppColor(isSecendColor, doSomething){
@@ -233,12 +254,10 @@ $("#shading li").mousedown(function(event) {
 })
 
 
-
-
-
-
-
-
-
+function PSCallback(csEvent) {
+	getAppColor(false, function(callback){
+		pick(callback,true)
+	})
+}
 
 
