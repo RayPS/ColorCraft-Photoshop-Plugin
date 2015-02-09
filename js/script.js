@@ -1,18 +1,20 @@
-////////////////////////////////////////////
-////                                    ////
-////        ColorShading			    ////
-////        www.RayPS.com               ////
-////		2015-02-07      			////
-////                                    ////
-////////////////////////////////////////////
+////////////////////////////////////
+////							////
+////        ColorShading		////
+////        www.RayPS.com		////
+////		2015-02-07			////
+////							////
+////////////////////////////////////
 
 (function () {
 	'use strict';
+	// Codes goes here
 }());
 
 
 var csInterface = new CSInterface();
 var myExtensionId = "colorshading";
+var application = csInterface.getApplicationID();
 var MouseIsDown;
 
 function init() {
@@ -20,7 +22,7 @@ function init() {
 	themeManager.init();
 	Persistent(true)
 
-	getPSColor(false, function(callback){
+	getAppColor(false, function(callback){
 		$("#spectrum").spectrum({
 		    color: callback,
 		    flat: true,
@@ -109,28 +111,56 @@ function Persistent(inOn) {
     csInterface.dispatchEvent(event);
 }
 
-function getPSColor(isBackground, doSomething){
-	var script
-	if (isBackground) {
-		script = "app.backgroundColor.rgb.hexValue"
-	} else{
-		script = "app.foregroundColor.rgb.hexValue"
-	}
 
-	csInterface.evalScript(script ,function(callback){
-		doSomething(callback)
-	})
+function getAppColor(isSecendColor, doSomething){
+	if (application == "ILST") {
+		// AI
+		csInterface.evalScript("aiGetColor" ,function(callback){
+
+			if (callback) {
+				doSomething(callback)
+			}
+		})
+
+	} else {
+		var script
+		if (isSecendColor) {
+			script = "app.backgroundColor.rgb.hexValue"
+		} else{
+			script = "app.foregroundColor.rgb.hexValue"
+		}
+
+		csInterface.evalScript(script ,function(callback){
+			doSomething(callback)
+		})
+	}
 }
 
-function setPSColor(color, isBackground) {
-	var script
-	if (isBackground) {
-		script = "app.backgroundColor.rgb.hexValue = '" + color + "'"
-	} else{
-		script = "app.foregroundColor.rgb.hexValue = '" + color + "'"
+function setAppColor(color, isSecendColor){
+	if (application == "ILST") {
+		// AI
+		var rgb = tinycolor(color).toRgb()
+		csInterface.evalScript("aiSetColor(" + rgb.r + "," + rgb.g + "," + rgb.b + "," + isSecendColor + ")",function(callback){
+			if(!callback){
+				alert("no document found.")
+			}
+		})
+
+	} else {
+		// PS
+
+		var script
+		var hex = tinycolor(color).toHex()
+		if (isSecendColor) {
+			script = "app.backgroundColor.rgb.hexValue = '" + hex + "'"
+		} else{
+			script = "app.foregroundColor.rgb.hexValue = '" + hex + "'"
+		}
+		csInterface.evalScript(script)
 	}
-	csInterface.evalScript(script)
 }
+
+
 
 function getSpectrum(){
 	return $("#spectrum").spectrum("get")
@@ -150,7 +180,7 @@ function generate (color) {
 function pick(color, regen, isBackground){
 	
 	$(".selected").removeClass('selected')
-	setPSColor(tinycolor(color).toHex(), isBackground)
+	setAppColor(color, isBackground)
 	$("#spectrum").spectrum("set", color)
 	
 	regen && generate(color)
