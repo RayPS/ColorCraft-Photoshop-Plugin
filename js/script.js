@@ -1,6 +1,6 @@
 ////////////////////////////////////
 ////							////
-////        ColorShading		////
+////        ColorCraft			////
 ////        www.RayPS.com		////
 ////		2015-02-07			////
 ////							////
@@ -13,7 +13,7 @@
 
 
 var csInterface = new CSInterface();
-var myExtensionId = "colorshading";
+var myExtensionId = "colorcraft";
 var application = csInterface.getApplicationID();
 var MouseIsDown;
 
