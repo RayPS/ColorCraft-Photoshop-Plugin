@@ -111,7 +111,6 @@ function Persistent(inOn) {
     csInterface.dispatchEvent(event);
 }
 
-
 function getAppColor(isSecendColor, doSomething){
 	if (application == "ILST") {
 		// AI
@@ -160,8 +159,6 @@ function setAppColor(color, isSecendColor){
 	}
 }
 
-
-
 function getSpectrum(){
 	return $("#spectrum").spectrum("get")
 }
@@ -206,8 +203,6 @@ $("#colorpicker").on('mouseup mouseleave', function(event) {
 }).on("move.spectrum", function(event){
 	generate(getSpectrum().toHex())
 })
-
-
 
 $("#shading li").mousedown(function(event) {
 

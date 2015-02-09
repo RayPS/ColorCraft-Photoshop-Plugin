@@ -7,9 +7,9 @@
 	</ExtensionList>
 	<ExecutionEnvironment>
 		<HostList>
-            <Host Name="PHXS" Version="[14.0,16]" />
-            <Host Name="PHSP" Version="[14.0,16]" />
-            <Host Name="ILST" Version="[18.0,18.9]"/>
+            <Host Name="PHXS" Version="[14.0,16.0]" />
+            <Host Name="PHSP" Version="[14.0,16.0]" />
+            <Host Name="ILST" Version="[18.0,19.0]"/>
 		</HostList>
 		<LocaleList>
 			<Locale Code="All" />
@@ -47,15 +47,10 @@
                         
 					</Geometry>
 					<Icons>
-                        <Icon Type="Normal">./img/placeholder.png</Icon>
-                        <Icon Type="RollOver">./img/placeholder.png</Icon>
-                        <Icon Type="DarkNormal">./img/dark.png</Icon>
-                        <Icon Type="DarkRollOver">./img/placeholder.png</Icon>
-
-                        <!-- <Icon Type="Normal">./img/light.png</Icon>
-						<Icon Type="RollOver">./img/light.png</Icon>
-                        <Icon Type="DarkNormal">./img/dark.png</Icon>
-                        <Icon Type="DarkRollOver">./img/dark.png</Icon> -->
+                        <Icon Type="Normal">./img/normal.png</Icon>
+                        <Icon Type="RollOver">./img/rollover.png</Icon>
+                        <Icon Type="DarkNormal">./img/darknormal.png</Icon>
+                        <Icon Type="DarkRollOver">./img/darkrollover.png</Icon>
 					</Icons>					
 				</UI>
 			</DispatchInfo>
