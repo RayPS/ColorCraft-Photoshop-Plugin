@@ -12,7 +12,8 @@
 
 
 var csInterface = new CSInterface();
-var myExtensionId = "colorshading"
+var myExtensionId = "colorshading";
+var MouseIsDown;
 
 function init() {
 
@@ -161,6 +162,8 @@ function pick(color, regen, isBackground){
 
 $("main").on('mousewheel', function(event){
     return false;
+}).mouseup(function(event) {
+	MouseIsDown = false
 }).onepage_scroll({
 	animationTime: 250,
 	direction: "horizontal"
@@ -169,26 +172,40 @@ $("main").on('mousewheel', function(event){
 $("#colorpicker").on('mouseup mouseleave', function(event) {
 
 	pick(getSpectrum().toHex(), true, event.altKey)
-	
+
 }).on("move.spectrum", function(event){
 	generate(getSpectrum().toHex())
 })
+
 
 
 $("#shading li").mousedown(function(event) {
 
 	var isRightClick = event.button == 2
 	var color = $(this).css("background-color")
-	pick(color, isRightClick)
+	pick(color, isRightClick, event.altKey)
+
+	MouseIsDown = true
+
+}).mouseup(function(event) {
+
+	var isRightClick = event.button == 2
+	var color = $(this).css("background-color")
+	pick(color, isRightClick, event.altKey)
+
+}).mouseenter(function(event) {
+
+	if (MouseIsDown) {
+		var color = $(this).css("background-color")
+		pick(color, false, event.altKey)
+	}
 
 }).dblclick(function(event) {
 
 	var color = $(this).css("background-color")
-	pick(color,true)
+	pick(color, true, event.altKey)
 
 })
-
-
 
 
 
