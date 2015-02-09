@@ -119,7 +119,6 @@ function spectrum(isBackground) {
 	})
 }
 
-
 function setPSColor(color, isBackground) {
 	var script
 	if (isBackground) {
@@ -133,6 +132,7 @@ function setPSColor(color, isBackground) {
 function hexColor(){
 	return $("#spectrum").spectrum("get").toHex()
 }
+
 
 function generate (c) {
 
@@ -160,29 +160,37 @@ $("#colorpicker").on('mouseup mouseleave', function(event) {
 })
 
 
-$("#shading li").click(function(event) {
-	$('.selected').removeClass('selected')
-	$(this).addClass('selected')
+$("#shading li").mousedown(function(event) {
 
-	var bg = tinycolor($(this).css('background-color')).toHex()
-	setPSColor(bg)
+	var isRightClick = event.button == 2
+
+	pick(this, isRightClick)
 
 }).dblclick(function(event) {
-	spectrum(false)
-}).mousedown(function(event) {
-	$(this).trigger('click')
-	if (event.button == 2) {
-		spectrum(false)
+
+	pick(this,true)
+
+})
+
+
+function pick(ele, select){
+
+	var bgc = $(ele).css("background-color")
+	var style = 'style="background-color: ' + bgc + ';"'
+	
+	$(".selected").removeClass('selected')
+	setPSColor(tinycolor(bgc).toHex())
+	$("#spectrum").spectrum("set", bgc)
+	
+	if (select) {
+		generate(bgc)
 	}
-});
+	
+	$("li[" + style + "]").addClass('selected')
+}
 
 
-
-
-
-
-
-
+var r = function(){location.reload()}
 
 
 
