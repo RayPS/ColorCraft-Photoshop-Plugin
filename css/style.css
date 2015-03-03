@@ -102,9 +102,6 @@ section{
 }
 
 
-
-
-
 #colorpalette .color-set .container{
     overflow: hidden;
     width: 100%;
@@ -118,16 +115,18 @@ section{
     box-shadow: none;
 }
 
-#colorpalette .color-set > a{
-    display: block;
+#colorpalette .color-set .toggle{
     height: 30px;
-    text-indent: 20px;
+}
+
+#colorpalette .color-set .toggle .title{
+    display: inline;
+    margin-left: 20px;
     line-height: 30px;
     font-size: 12px;
 }
 
-#colorpalette .color-set > a span{
-    /* Triangle */
+#colorpalette .triangle{
     font-size: 22px;
     margin: 10px;
     display: inline-block;
@@ -144,13 +143,12 @@ section{
     -webkit-transition: all 0.1s ease-out;
 }
 
-#colorpalette .color-set > a span.collapse{
-    /* Triangle Rotate */
+#colorpalette .triangle.collapse{
     -webkit-transform: rotate(90deg);
     top: 9px;
 }
 
-#colorpalette .color-set .container > a{
+#colorpalette .color-set .container a{
     float: left;
     display: block;
     position: relative;
@@ -158,49 +156,59 @@ section{
     -webkit-transition: all 0.1s ease-out;
 }
 
-#colorpalette .color-set .container > a:active{
+#colorpalette .color-set .container a:active{
     opacity: 0.75;
 }
+
+
+
+
 
 
 #flatuicolor .container{
     height: 160px;
 }
-#flatuicolor .container > a{
+#flatuicolor .container a{
     width: 20%;
     height: 40px;
 }
 
-#ios .container{
-    height: 80px;
+#google .container{
+    height: 160px;
 }
-#ios .container > a{
-    width: 25%;
+#google .container a{
+    width: 20%;
     height: 40px;
 }
 
 #bootstrap .container{
     height: 40px;
 }
-#bootstrap .container > a{
+#bootstrap .container a{
     width: 20%;
     height: 40px;
 }
 
-
-#base16 .container{
+#ios .container{
     height: 25px;
 }
-#base16 .container > a{
+#ios .container a{
     width: 12.5%;
     height: 25px;
 }
 
+#base16 .container{
+    height: 25px;
+}
+#base16 .container a{
+    width: 12.5%;
+    height: 25px;
+}
 
 #gray .container{
     height: 20px;
 }
-#gray .container > a{
+#gray .container a{
     width: 10%;
     height: 20px;
 }
@@ -209,6 +217,54 @@ section{
 
 
 
+#google .toggle{
+    width: calc(100% - 75px);
+    display: inline-block;
+    float: left;
+}
+
+#google .ctrl{
+    position: absolute;
+    display: inline-block;
+    width: 74px;
+    margin-top: 5px;
+    right: 0;
+    float: right;
+    -webkit-transition: all 0.1s ease-out;
+}
+
+#google .ctrl.hide{
+    opacity: 0;
+}
+
+#google .ctrl a{
+    display: inline-block;
+    float: left;
+}
+
+#google .ctrl .value{
+    width: 30px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+}
+
+#google .ctrl .btn{
+    width: 20px;
+    height: 20px;
+    line-height: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+.transparent{
+    float: left;
+    position: relative;
+    width: 20%;
+    height: 40px;
+    background-repeat: repeat;
+    background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAHElEQVQYV2P4//+/FBbMgI4ZhohCbBhD81BQCAD6ay/4Sj20ZAAAAABJRU5ErkJggg==); 
+}
 
 
 

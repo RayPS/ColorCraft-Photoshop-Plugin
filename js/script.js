@@ -23,13 +23,14 @@ function init() {
 	persistent(true)
 	register(true)
 	spectrumInit()
+	renderGoogle('500')
 
 	document.oncontextmenu = function() {return false;};
 }
 init();
 
 
-var palette = {
+var shades = {
 	t: function(color){
 		var C = new Array()
 
@@ -187,11 +188,11 @@ function getSpectrum(){
 function generate (color) {
 
 	for (var i = 0; i < 7; i++) {
-		$(".T li")[i].style.backgroundColor = palette.t(color)[i]
-		$(".B li")[i].style.backgroundColor = palette.b(color)[i]
-		$(".L li")[i].style.backgroundColor = palette.l(color)[i]
-		$(".S li")[i].style.backgroundColor = palette.s(color)[i]
-		$(".H li")[i].style.backgroundColor = palette.h(color)[i]
+		$(".T li")[i].style.backgroundColor = shades.t(color)[i]
+		$(".B li")[i].style.backgroundColor = shades.b(color)[i]
+		$(".L li")[i].style.backgroundColor = shades.l(color)[i]
+		$(".S li")[i].style.backgroundColor = shades.s(color)[i]
+		$(".H li")[i].style.backgroundColor = shades.h(color)[i]
 	}
 }
 
@@ -257,26 +258,54 @@ $("#shading li").mousedown(function(event) {
 
 
 
-$("#colorpalette .color-set > a").click(function(event) {
-	$(this).find('span').toggleClass('collapse')
-	$(this).next().toggleClass('collapse')
+$("#colorpalette .color-set .toggle").click(function(event) {
+	$(this).find('.triangle').toggleClass('collapse')
+	$(this).parent().find('.container').toggleClass('collapse')
+
+	if ($(this).parent().attr('id') == "google") {
+		$(this).parent().find('.ctrl').toggleClass('hide');
+	}
 })
 
-$(".color-set .container > a").mousedown(function(event) {
+$(".color-set .container a").mousedown(function(event) {
 	var color = $(this).css("background-color")
-	pick(color, true, event.altKey)
+	if (color !== "rgb(83, 83, 83)") {
+		pick(color, true, event.altKey)
+	} else {}
+})
+
+$("#google .btn").click(function(event) {
+	if ($(this).parent().find('.value').html().length > 3) {
+		$(this).parent().find('.value').css('font-size', '10px');
+	} else {
+		$(this).parent().find('.value').css('font-size', '14px');
+	}
 });
 
 
 
+function renderGoogle(value){
+	var keys = Object.keys(palette.palette)
+	var colors = ""
+	for(i in keys){
+		colors += '<a style="background-color: ' + palette.get([keys[i]], value) + '">' + '</a>'
+	}
+	$("#google .container").html(colors)
+	$("#google .container a").filter(function() {
+		return ( $(this).css('background-color') == 'rgb(83, 83, 83)' );
+	}).addClass('transparent')
+}
 
-
-
-
-
-
-
-
+function GetObjectKeyIndex(obj, keyToFind) {
+    var i = 0, key;
+    for (key in obj) {
+        if (key == keyToFind) {
+            return i;
+        }
+        i++;
+    }
+    return null;
+}
 
 
 function PSCallback(csEvent) {
