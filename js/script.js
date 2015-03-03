@@ -254,6 +254,34 @@ $("#shading li").mousedown(function(event) {
 })
 
 
+
+
+
+$("#colorpalette .color-set a").click(function(event) {
+	$(this).find('span').toggleClass('collapse');
+
+	if ($(this).find('span').hasClass('collapse')) {
+
+		// $(this).next().css('height', '0px');
+		$(this).next().addClass('collapse')
+		// $(this).next().animate({"height": 0}, 500, function() {});
+	} else {
+		// $(this).next().css('height', 'auto');
+		$(this).next().removeClass('collapse')
+		// $(this).next().animate({"height": "auto"}, 500, function() {});
+	}
+});
+
+
+
+
+
+
+
+
+
+
+
 function PSCallback(csEvent) {
 	getAppColor(false, function(callback){
 		pick(callback,true)
