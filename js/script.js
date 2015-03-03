@@ -257,20 +257,17 @@ $("#shading li").mousedown(function(event) {
 
 
 
-$("#colorpalette .color-set a").click(function(event) {
-	$(this).find('span').toggleClass('collapse');
+$("#colorpalette .color-set > a").click(function(event) {
+	$(this).find('span').toggleClass('collapse')
+	$(this).next().toggleClass('collapse')
+})
 
-	if ($(this).find('span').hasClass('collapse')) {
-
-		// $(this).next().css('height', '0px');
-		$(this).next().addClass('collapse')
-		// $(this).next().animate({"height": 0}, 500, function() {});
-	} else {
-		// $(this).next().css('height', 'auto');
-		$(this).next().removeClass('collapse')
-		// $(this).next().animate({"height": "auto"}, 500, function() {});
-	}
+$(".color-set .container > a").mousedown(function(event) {
+	var color = $(this).css("background-color")
+	pick(color, true, event.altKey)
 });
+
+
 
 
 

@@ -109,6 +109,7 @@ section{
     overflow: hidden;
     width: 100%;
     box-shadow: 0 0 0 1px HSL(0, 0%, 10%),0 0 0 2px rgba(255,255,255,0.1);
+    background-color: black;
     -webkit-transition: all 0.2s ease-out;
 }
 
@@ -117,7 +118,7 @@ section{
     box-shadow: none;
 }
 
-#colorpalette .color-set a{
+#colorpalette .color-set > a{
     display: block;
     height: 30px;
     text-indent: 20px;
@@ -125,7 +126,7 @@ section{
     font-size: 12px;
 }
 
-#colorpalette .color-set a span{
+#colorpalette .color-set > a span{
     /* Triangle */
     font-size: 22px;
     margin: 10px;
@@ -143,23 +144,29 @@ section{
     -webkit-transition: all 0.1s ease-out;
 }
 
-#colorpalette .color-set a span.collapse{
+#colorpalette .color-set > a span.collapse{
     /* Triangle Rotate */
     -webkit-transform: rotate(90deg);
     top: 9px;
 }
 
-#colorpalette .color-set .container > div{
+#colorpalette .color-set .container > a{
     float: left;
     display: block;
     position: relative;
+    text-decoration: none;
+    -webkit-transition: all 0.1s ease-out;
+}
+
+#colorpalette .color-set .container > a:active{
+    opacity: 0.75;
 }
 
 
 #flatuicolor .container{
     height: 160px;
 }
-#flatuicolor .container > div{
+#flatuicolor .container > a{
     width: 20%;
     height: 40px;
 }
@@ -167,7 +174,7 @@ section{
 #ios .container{
     height: 80px;
 }
-#ios .container > div{
+#ios .container > a{
     width: 25%;
     height: 40px;
 }
@@ -175,7 +182,7 @@ section{
 #bootstrap .container{
     height: 40px;
 }
-#bootstrap .container > div{
+#bootstrap .container > a{
     width: 20%;
     height: 40px;
 }
@@ -184,7 +191,7 @@ section{
 #base16 .container{
     height: 25px;
 }
-#base16 .container > div{
+#base16 .container > a{
     width: 12.5%;
     height: 25px;
 }
@@ -193,7 +200,7 @@ section{
 #gray .container{
     height: 20px;
 }
-#gray .container > div{
+#gray .container > a{
     width: 10%;
     height: 20px;
 }
