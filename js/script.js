@@ -16,6 +16,7 @@ var csInterface = new CSInterface();
 var myExtensionId = "colorcraft";
 var application = csInterface.getApplicationID();
 var MouseIsDown;
+var GoogleColorLevel = 5
 
 function init() {
 
@@ -23,7 +24,7 @@ function init() {
 	persistent(true)
 	register(true)
 	spectrumInit()
-	renderGoogle('500')
+	renderGoogleColor(5)
 
 	document.oncontextmenu = function() {return false;};
 }
@@ -274,37 +275,74 @@ $(".color-set .container a").mousedown(function(event) {
 	} else {}
 })
 
-$("#google .btn").click(function(event) {
-	if ($(this).parent().find('.value').html().length > 3) {
-		$(this).parent().find('.value').css('font-size', '10px');
+$("#google .plus").click(function(event) {
+	GoogleColorLevel += 1
+	renderGoogleColor(GoogleColorLevel)
+})
+
+$("#google .minus").click(function(event) {
+	GoogleColorLevel -= 1
+	renderGoogleColor(GoogleColorLevel)
+})
+
+$("#google .toggle").click(function(event) {
+	var googleIsOn = !$("#google .container").hasClass('collapse') 
+	var flatIsOn = !$("#flatuicolor .container").hasClass('collapse') 
+
+	if (googleIsOn && flatIsOn) {
+		$("#flatuicolor .container").addClass('collapse')
+		$("#flatuicolor .triangle").addClass('collapse')
+	}
+})
+
+$("#flatuicolor .toggle").click(function(event) {
+	var googleIsOn = !$("#google .container").hasClass('collapse') 
+	var flatIsOn = !$("#flatuicolor .container").hasClass('collapse') 
+
+	if (googleIsOn && flatIsOn) {
+		$("#google .container").addClass('collapse')
+		$("#google .triangle").addClass('collapse')
+		$("#google .ctrl").addClass('hide')
+	}
+})
+
+
+function renderGoogleColor(){
+
+	if (GoogleColorLevel >= data_google.levels.length - 1) {
+		GoogleColorLevel = data_google.levels.length - 1
+		$('#google .plus').css({'opacity': '0.25', 'pointer-events': "none"})
+	} else if (GoogleColorLevel <= 0) {
+		GoogleColorLevel = 0
+		$('#google .minus').css({'opacity': '0.25', 'pointer-events': "none"})
 	} else {
-		$(this).parent().find('.value').css('font-size', '14px');
+		$('#google .btn').css({'opacity': '1', 'pointer-events': "auto"})
+		if (GoogleColorLevel > 9) {
+			$('#google .level').css('font-size', '10px');
+		} else if (GoogleColorLevel < 9) {
+			$('#google .level').css('font-size', '14px');
+		}
 	}
-});
 
-
-
-function renderGoogle(value){
-	var keys = Object.keys(palette.palette)
 	var colors = ""
-	for(i in keys){
-		colors += '<a style="background-color: ' + palette.get([keys[i]], value) + '">' + '</a>'
-	}
-	$("#google .container").html(colors)
-	$("#google .container a").filter(function() {
-		return ( $(this).css('background-color') == 'rgb(83, 83, 83)' );
-	}).addClass('transparent')
-}
 
-function GetObjectKeyIndex(obj, keyToFind) {
-    var i = 0, key;
-    for (key in obj) {
-        if (key == keyToFind) {
-            return i;
-        }
-        i++;
-    }
-    return null;
+	if ($("#google .container").html().length < 100) {
+		// init
+		for(i in data_google.palette){
+			colors += '<a style="background-color: ' + data_google.palette[i].color[GoogleColorLevel] + '"></a>'
+		}
+		$("#google .container").html(colors)
+	} else {
+		// regen
+		$("#google .container a").each(function(i, el) {
+				el.style['background-color'] = data_google.palette[i].color[GoogleColorLevel]
+		})
+	}
+	
+	$("#google .container a").removeClass('transparent')
+	$("#google .container a[style='background-color: rgb(83, 83, 83);']").addClass('transparent')
+
+	$("#google .level").html(data_google.levels[GoogleColorLevel])
 }
 
 
