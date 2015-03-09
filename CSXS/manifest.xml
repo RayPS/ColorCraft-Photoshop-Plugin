@@ -3,7 +3,7 @@
     <Contact mailto="ray@rayps.com"/>
     <Abstract href="http://lab.rayps.com/cs/"/>
 	<ExtensionList>
-		<Extension Id="colorcraft" Version="1.3" />
+		<Extension Id="colorcraft" Version="1.0" />
 	</ExtensionList>
 	<ExecutionEnvironment>
 		<HostList>
