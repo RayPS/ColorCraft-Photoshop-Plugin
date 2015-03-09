@@ -292,20 +292,13 @@ section{
     margin-top:10px;
 }
 
-.page-3 h6{
+.page-3 a{
+    padding: 10px;
     margin: 0;
     opacity: 0.5;
+    font-size: 12px;
 }
 
-.page-3 a{
+.email{
     text-decoration: underline !important;
-}
-
-.page-3 p{
-    background-color: rgba(0,0,0,0.25);
-    padding: 10px;
-    margin-top: 10px;
-    line-height: 20px;
-    box-shadow: 0 0 0 1px HSL(0, 0%, 10%),0 0 0 2px rgba(255,255,255,0.1);
-
 }
