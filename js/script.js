@@ -354,29 +354,6 @@ function PSCallback(csEvent) {
 }
 
 
-
-
-// function trial(){
-// 	var _now = new Date()
-
-// 	if (localStorage.getItem("_end") == null) {
-// 		localStorage.setItem("_end", new Date(new Date(_now).setFullYear(_now.getFullYear() + 30)))
-// 	}
-
-// 	var _end = new Date(localStorage.getItem("_end"))
-// 	var _day = 1000 * 60 * 60 * 24;
-// 	var distance = _end - _now;
-// 	var daysLeft = Math.floor(distance / _day)
-
-// 	if (distance < 0) {
-// 	    daysLeft = 'EXPIRED!';
-// 	    return;
-// 	} else {
-// 		console.log(daysLeft)
-// 	}
-// }
-
-
 $.ajax({
 	url: 'CSXS/manifest.xml',
 	dataType: 'xml',
