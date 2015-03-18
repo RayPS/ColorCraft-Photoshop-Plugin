@@ -220,9 +220,15 @@ $("main").on('mousewheel', function(event){
 	direction: "horizontal"
 })
 
-$("#colorpicker").on('mouseup mouseleave', function(event) {
+$("#colorpicker").on('mouseup', function(event) {
 
 	pick(getSpectrum().toHex(), true, event.altKey)
+
+}).on('mouseleave', function(event) {
+
+	if ($("body").hasClass('sp-dragging')) {
+		pick(getSpectrum().toHex(), true, event.altKey)
+	}
 
 }).on("move.spectrum", function(event){
 	generate(getSpectrum().toHex())
