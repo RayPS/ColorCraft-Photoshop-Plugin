@@ -365,6 +365,6 @@ $.ajax({
 	dataType: 'xml',
 	success: function(data, textStatus, jqXHR){
 		Version = $(data).find("Extension").attr('Version')
-		$(".page-3 h6").html("Version: " + Version)
+		$(".page-3 .version").html("Version: " + Version)
 	}
 })
