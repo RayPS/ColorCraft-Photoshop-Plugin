@@ -287,27 +287,69 @@ section{
     text-align: center;
 }
 
+
+.page-3 .trial{
+    background-color: rgba(0,0,0,0.25);
+    box-shadow: 0 1px 0 0 rgba(255,255,255,0.1), inset 0 1px 0 0 rgba(0,0,0,0.1);
+    margin: 10px;
+    padding: 5px;
+    border-radius: 3px;
+    line-height: 20px;
+}
+
+.page-3 .trial p{
+    font-size: 12px;
+    margin: 0;
+}
+
+.page-3 .trial button{
+    font-size: 12px;
+    color: #FFF;
+    border-radius: 3px;
+    background-color: #51A956;
+    border: none;
+    padding: 1px 10px;
+    margin: 0;
+    box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.25), 0 1px 0 0 rgba(0,0,0,0.5);
+    margin: 5px;
+}
+
+
+
+
+    
+.page-3 .about{
+    height: calc(100% - 125px);
+    overflow: hidden;
+}
+
 .page-3 .about h3{
     margin: 0;
-    margin-top:10px;
 }
 
 .page-3 .about a{
-    padding: 10px;
     margin: 0;
+    font-weight: lighter;
+    border-bottom: 2px solid rgba(0,0,0,0.25);
+    display: inline-block;
+    height: 30px;
+}
+
+.page-3 .about p{
+    padding: 10px;
     opacity: 0.5;
     font-size: 12px;
+    user-select: text;
+    -webkit-user-select: text;
+    cursor: text;
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
 }
 
-.page-3 .about .email{
-    text-decoration: underline !important;
+.page-3 .about p::selection{
+    background-color: rgba(0,0,0,0.5);
 }
 
-
-
-.page-3 .trial p{
-    background-color: rgba(0,0,0,0.25);
-    padding: 10px;
-}
 
 
