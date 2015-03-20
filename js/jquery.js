@@ -22,20 +22,15 @@
     var daysLeft = Math.floor(distance / _day)
 
     if (distance < 0) {
-        daysLeft = 'EXPIRED!';
-
 
         $("main").moveTo(3)
-
-
-
-
+        $(".onepage-pagination").remove()
+        $(".trial p").html("Trial Expired")
 
     } else {
         $(".trial p").html(daysLeft + " days of trial remaining.")
     }
 
-    console.log(daysLeft)
 }());
 
 
