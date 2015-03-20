@@ -31,7 +31,9 @@
 
 
 
-    } else {}
+    } else {
+        $(".trial p").html(daysLeft + " days of trial remaining.")
+    }
 
     console.log(daysLeft)
 }());
